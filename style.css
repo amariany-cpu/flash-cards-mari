@@ -1,78 +1,174 @@
-/* ==========================================================
-   CONFIGURAÇÕES GERAIS E PALETA DE CORES
-   ========================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif, Arial, Helvetica;
-}
-
-:root {
-    --bg-geral: #f4f6fb;
-    --texto-principal: #2d3748;
-    --sombra-card: rgba(0, 0, 0, 0.08);
+    font-family: 'Poppins', sans-serif, Arial;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: var(--bg-geral);
-    color: var(--texto-principal);
+    background-color: #fff0f5; /* Rosa bem suave de fundo */
+    color: #4a1525;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* ==========================================================
-   CABEÇALHO (GRADIENTE MULTICOLORIDO VIBRANTE)
-   ========================================================== */
+/* ====================================
+   BALEIA ROSA EM CSS (NANDANDO AO FUNDO)
+   ==================================== */
+.baleia-container {
+    position: fixed;
+    bottom: 50px;
+    left: -200px;
+    z-index: 0; /* Fica atrás dos cartões */
+    opacity: 0.85;
+    animation: nadar 18s linear infinite;
+    pointer-events: none; /* Não atrapalha o clique no site */
+}
+
+.baleia {
+    width: 150px;
+    height: 80px;
+    background: #ff69b4;
+    border-radius: 80px 80px 30px 40px;
+    position: relative;
+    animation: flutuar 3s ease-in-out infinite alternate;
+}
+
+/* Olho */
+.baleia .olho {
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+/* Boca */
+.baleia .boca {
+    width: 20px;
+    height: 10px;
+    border-bottom: 3px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    left: 15px;
+}
+
+/* Cauda */
+.baleia .cauda {
+    position: absolute;
+    right: -25px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 35px solid #ff1493;
+}
+
+/* Jato de Água Rosa */
+.baleia .jato-agua {
+    position: absolute;
+    top: -25px;
+    left: 70px;
+    width: 8px;
+    height: 25px;
+    background: rgba(255, 105, 180, 0.6);
+    border-radius: 10px;
+    animation: espirrar 1.5s infinite;
+}
+
+/* Animações da Baleia */
+@keyframes nadar {
+    0% {
+        left: -200px;
+        transform: scaleX(1);
+    }
+    49% {
+        transform: scaleX(1);
+    }
+    50% {
+        left: calc(100vw + 50px);
+        transform: scaleX(-1); /* Vira para o outro lado */
+    }
+    99% {
+        transform: scaleX(-1);
+    }
+    100% {
+        left: -200px;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes flutuar {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+}
+
+@keyframes espirrar {
+    0%, 100% { height: 10px; opacity: 0; }
+    50% { height: 30px; opacity: 1; }
+}
+
+/* ====================================
+   ESTILOS PRINCIPAIS
+   ==================================== */
 .cabecalho {
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe, #fd79a8);
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
 .cabecalho h1 {
     font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 .cabecalho nav a {
     text-decoration: none;
-    color: #6c5ce7;
-    background-color: #ffffff;
-    padding: 10px 22px;
-    border-radius: 25px;
+    color: #ff1493;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .cabecalho nav a:hover {
-    background-color: #ffeaa7;
-    color: #d63031;
-    transform: translateY(-2px) scale(1.05);
+    background-color: #ffe4e1;
+    transform: scale(1.05);
 }
 
-/* ==========================================================
-   CONTEÚDO PRINCIPAL E GRID DE CARDS
-   ========================================================== */
 main {
     flex: 1;
-    padding: 40px 20px;
+    padding: 30px 20px;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 main h2 {
-    color: #485460;
-    margin-bottom: 35px;
-    font-size: 1.5rem;
-    font-weight: 600;
+    color: #d81b60;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.contador {
+    font-weight: bold;
+    color: #ff1493;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
 }
 
 .container-cards {
@@ -80,13 +176,10 @@ main h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-    max-width: 1250px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* ==========================================================
-   ESTRUTURA DOS CARDS & EFEITO DE GIRO 3D
-   ========================================================== */
 .cartao {
     width: 260px;
     height: 200px;
@@ -98,14 +191,15 @@ main h2 {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform 0.6s;
     transform-style: preserve-3d;
     cursor: pointer;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px var(--sombra-card);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
 }
 
-.cartao:hover .cartao-interno {
+.cartao:hover .cartao-interno, 
+.cartao.virado .cartao-interno {
     transform: rotateY(180deg);
 }
 
@@ -114,108 +208,42 @@ main h2 {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 18px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 22px;
+    padding: 20px;
 }
 
-/* Texto na frente */
+.cartao-frente {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    color: white;
+    border: 3px solid #ff1493;
+}
+
 .tag-nome {
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* Texto no verso */
 .cartao-atras {
     background-color: #ffffff;
-    color: #2d3436;
+    color: #880e4f;
+    border: 3px solid #ff69b4;
     transform: rotateY(180deg);
-    font-size: 0.98rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.4;
     font-weight: 500;
-    box-shadow: inset 0 0 0 3px rgba(0,0,0,0.05);
 }
 
-/* ==========================================================
-   PALETA COLORIDA HARMÔNICA PARA CADA CARTÃO (NTH-CHILD)
-   ========================================================== */
-
-/* 1. Violeta & Roxo */
-.cartao:nth-child(1) .cartao-frente { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
-.cartao:nth-child(1) .cartao-atras { border: 3px solid #6c5ce7; }
-
-/* 2. Rosa & Chiclete */
-.cartao:nth-child(2) .cartao-frente { background: linear-gradient(135deg, #fd79a8, #e84393); }
-.cartao:nth-child(2) .cartao-atras { border: 3px solid #e84393; }
-
-/* 3. Azul Laranja & Coral */
-.cartao:nth-child(3) .cartao-frente { background: linear-gradient(135deg, #ff7675, #d63031); }
-.cartao:nth-child(3) .cartao-atras { border: 3px solid #d63031; }
-
-/* 4. Âmbar & Laranja Quente */
-.cartao:nth-child(4) .cartao-frente { background: linear-gradient(135deg, #ffbe76, #f0932b); }
-.cartao:nth-child(4) .cartao-atras { border: 3px solid #f0932b; }
-
-/* 5. Amarelo Sol & Dourado */
-.cartao:nth-child(5) .cartao-frente { background: linear-gradient(135deg, #f6e58d, #f9ca24); }
-.cartao:nth-child(5) .cartao-frente .tag-nome { color: #2d3436; text-shadow: none; }
-.cartao:nth-child(5) .cartao-atras { border: 3px solid #f9ca24; }
-
-/* 6. Verde Menta & Esmeralda */
-.cartao:nth-child(6) .cartao-frente { background: linear-gradient(135deg, #55efc4, #00b894); }
-.cartao:nth-child(6) .cartao-atras { border: 3px solid #00b894; }
-
-/* 7. Turquesa & Azul Claro */
-.cartao:nth-child(7) .cartao-frente { background: linear-gradient(135deg, #81ecec, #00cec9); }
-.cartao:nth-child(7) .cartao-atras { border: 3px solid #00cec9; }
-
-/* 8. Azul Céu & Azul Marinho */
-.cartao:nth-child(8) .cartao-frente { background: linear-gradient(135deg, #74b9ff, #0984e3); }
-.cartao:nth-child(8) .cartao-atras { border: 3px solid #0984e3; }
-
-/* 9. Roxo Magenta */
-.cartao:nth-child(9) .cartao-frente { background: linear-gradient(135deg, #e056fd, #be2edd); }
-.cartao:nth-child(9) .cartao-atras { border: 3px solid #be2edd; }
-
-/* 10. Verde Neon Suave */
-.cartao:nth-child(10) .cartao-frente { background: linear-gradient(135deg, #7bed9f, #2ed573); }
-.cartao:nth-child(10) .cartao-atras { border: 3px solid #2ed573; }
-
-/* 11. Pêssego Tropical */
-.cartao:nth-child(11) .cartao-frente { background: linear-gradient(135deg, #ffab91, #ff7043); }
-.cartao:nth-child(11) .cartao-atras { border: 3px solid #ff7043; }
-
-/* 12. Azul Índigo */
-.cartao:nth-child(12) .cartao-frente { background: linear-gradient(135deg, #7986cb, #3f51b5); }
-.cartao:nth-child(12) .cartao-atras { border: 3px solid #3f51b5; }
-
-/* 13. Menta Pastel */
-.cartao:nth-child(13) .cartao-frente { background: linear-gradient(135deg, #80cbd3, #4db6ac); }
-.cartao:nth-child(13) .cartao-atras { border: 3px solid #4db6ac); }
-
-/* 14. Amarelo Laranja */
-.cartao:nth-child(14) .cartao-frente { background: linear-gradient(135deg, #ffcc80, #ffa726); }
-.cartao:nth-child(14) .cartao-atras { border: 3px solid #ffa726; }
-
-/* 15. Orquídea / Violeta Vibrante */
-.cartao:nth-child(15) .cartao-frente { background: linear-gradient(135deg, #f48fb1, #ad1457); }
-.cartao:nth-child(15) .cartao-atras { border: 3px solid #ad1457; }
-
-
-/* ==========================================================
-   RODAPÉ (GRADIENTE MULTICOLORIDO)
-   ========================================================== */
 footer {
-    background: linear-gradient(135deg, #fd79a8, #6c5ce7);
-    color: #ffffff;
+    background-color: #ff69b4;
+    color: white;
     text-align: center;
-    padding: 18px;
-    font-weight: 600;
-    margin-top: 50px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
 }

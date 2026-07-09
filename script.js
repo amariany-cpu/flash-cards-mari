@@ -1,23 +1,32 @@
-// Aguarda o documento carregar
 document.addEventListener("DOMContentLoaded", () => {
     const cartoes = document.querySelectorAll(".cartao");
     const contadorElemento = document.getElementById("qtd-virados");
     const cardsExplorados = new Set();
 
     cartoes.forEach((cartao, index) => {
-        // Ao passar o mouse no cartão, contabiliza no contador
-        cartao.addEventListener("mouseenter", () => {
-            if (!cardsExplorados.has(index)) {
-                cardsExplorados.add(index);
-                contadorElemento.textContent = cardsExplorados.size;
+        // Suporte para CELULAR: Vira ao tocar no card
+        cartao.addEventListener("click", () => {
+            cartao.classList.toggle("virado");
+            registrarCard(index);
+        });
 
-                // Mensagem especial ao completar todos
-                if (cardsExplorados.size === cartoes.length) {
-                    setTimeout(() => {
-                        alert("Parabéns, Aluno! Você já descobriu todas as 15 tags HTML!☾𖤓 ");
-                    }, 500);
-                }
-            }
+        // Suporte para PC: Registra ao passar o mouse por cima
+        cartao.addEventListener("mouseenter", () => {
+            registrarCard(index);
         });
     });
+
+    function registrarCard(index) {
+        if (!cardsExplorados.has(index)) {
+            cardsExplorados.add(index);
+            contadorElemento.textContent = cardsExplorados.size;
+
+            // Mensagem especial ao abrir os 15 cards
+            if (cardsExplorados.size === cartoes.length) {
+                setTimeout(() => {
+                    alert("Parabéns, Mariany! Você já descobriu todas as 15 tags HTML! 🎉🌸");
+                }, 500);
+            }
+        }
+    }
 });

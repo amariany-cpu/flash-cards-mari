@@ -1,4 +1,4 @@
-* {
+** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fff0f5; /* Rosa bem suave de fundo */
+    background-color: #fff0f5;
     color: #4a1525;
     position: relative;
     overflow-x: hidden;
@@ -20,70 +20,65 @@ body {
    ==================================== */
 .baleia-container {
     position: fixed;
-    bottom: 50px;
+    bottom: 40px;
     left: -200px;
-    z-index: 0; /* Fica atrás dos cartões */
+    z-index: 0;
     opacity: 0.85;
     animation: nadar 18s linear infinite;
-    pointer-events: none; /* Não atrapalha o clique no site */
+    pointer-events: none;
 }
 
 .baleia {
-    width: 150px;
-    height: 80px;
+    width: 140px;
+    height: 75px;
     background: #ff69b4;
     border-radius: 80px 80px 30px 40px;
     position: relative;
     animation: flutuar 3s ease-in-out infinite alternate;
 }
 
-/* Olho */
 .baleia .olho {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     background-color: #333;
     border-radius: 50%;
     position: absolute;
-    top: 25px;
-    left: 25px;
+    top: 22px;
+    left: 22px;
 }
 
-/* Boca */
 .baleia .boca {
-    width: 20px;
-    height: 10px;
+    width: 18px;
+    height: 8px;
     border-bottom: 3px solid #333;
     border-radius: 50%;
     position: absolute;
-    top: 35px;
-    left: 15px;
+    top: 32px;
+    left: 14px;
 }
 
-/* Cauda */
 .baleia .cauda {
     position: absolute;
-    right: -25px;
-    top: 20px;
+    right: -22px;
+    top: 18px;
     width: 0;
     height: 0;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-left: 35px solid #ff1493;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 30px solid #ff1493;
 }
 
-/* Jato de Água Rosa */
 .baleia .jato-agua {
     position: absolute;
-    top: -25px;
-    left: 70px;
+    top: -22px;
+    left: 65px;
     width: 8px;
-    height: 25px;
+    height: 22px;
     background: rgba(255, 105, 180, 0.6);
     border-radius: 10px;
     animation: espirrar 1.5s infinite;
 }
 
-/* Animações da Baleia */
 @keyframes nadar {
     0% {
         left: -200px;
@@ -94,7 +89,7 @@ body {
     }
     50% {
         left: calc(100vw + 50px);
-        transform: scaleX(-1); /* Vira para o outro lado */
+        transform: scaleX(-1);
     }
     99% {
         transform: scaleX(-1);
@@ -107,16 +102,16 @@ body {
 
 @keyframes flutuar {
     0% { transform: translateY(0px); }
-    100% { transform: translateY(-20px); }
+    100% { transform: translateY(-15px); }
 }
 
 @keyframes espirrar {
-    0%, 100% { height: 10px; opacity: 0; }
-    50% { height: 30px; opacity: 1; }
+    0%, 100% { height: 8px; opacity: 0; }
+    50% { height: 25px; opacity: 1; }
 }
 
 /* ====================================
-   ESTILOS PRINCIPAIS
+   CABEÇALHO
    ==================================== */
 .cabecalho {
     padding: 20px 40px;
@@ -150,6 +145,9 @@ body {
     transform: scale(1.05);
 }
 
+/* ====================================
+   CONTEÚDO PRINCIPAL
+   ==================================== */
 main {
     flex: 1;
     padding: 30px 20px;
@@ -160,7 +158,7 @@ main {
 
 main h2 {
     color: #d81b60;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 1.4rem;
 }
 
@@ -180,6 +178,9 @@ main h2 {
     margin: 0 auto;
 }
 
+/* ====================================
+   ESTRUTURA DOS CARDS & GIRO 3D
+   ==================================== */
 .cartao {
     width: 260px;
     height: 200px;
@@ -198,6 +199,7 @@ main h2 {
     box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
 }
 
+/* Funciona tanto ao passar o mouse quanto ao clicar/tocar via classe JS */
 .cartao:hover .cartao-interno, 
 .cartao.virado .cartao-interno {
     transform: rotateY(180deg);
@@ -246,4 +248,34 @@ footer {
     margin-top: 40px;
     position: relative;
     z-index: 2;
+}
+
+/* ====================================
+   REGRAS PARA CELULAR (RESPONSIVIDADE)
+   ==================================== */
+@media (max-width: 600px) {
+    .cabecalho {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .cabecalho h1 {
+        font-size: 1.5rem;
+    }
+
+    .cartao {
+        width: 100%;
+        max-width: 300px;
+        height: 180px;
+    }
+
+    main h2 {
+        font-size: 1.1rem;
+    }
+
+    .baleia {
+        transform: scale(0.75);
+    }
 }

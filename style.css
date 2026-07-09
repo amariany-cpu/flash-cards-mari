@@ -1,39 +1,137 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif, Arial;
 }
 
-.cabecalho{
-    padding: 15px 25px ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-
-.cartao{
-    width: 260px;
-    height: 200px;
-}
-
-
-.cartao-frente, .cartao-atras{
-    width: 100%;
-}
-
-.cartao-imagem {
-    width: 100%;
-}
-
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
+    background-color: #fff0f5; /* Rosa bem suave de fundo */
+    color: #4a1525;
 }
 
-main{
+/* Cabeçalho */
+.cabecalho {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+}
+
+.cabecalho h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.cabecalho nav a {
+    text-decoration: none;
+    color: #ff1493;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cabecalho nav a:hover {
+    background-color: #ffe4e1;
+    transform: scale(1.05);
+}
+
+/* Conteúdo Principal */
+main {
     flex: 1;
-    
+    padding: 30px 20px;
+    text-align: center;
+}
+
+main h2 {
+    color: #d81b60;
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+}
+
+/* Container de Cards em Grid */
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estrutura do Cartão e Efeito de Virar */
+.cartao {
+    width: 260px;
+    height: 200px;
+    perspective: 1000px; /* Dá o efeito 3D ao virar */
+}
+
+.cartao-interno {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
+}
+
+.cartao:hover .cartao-interno {
+    transform: rotateY(180deg);
+}
+
+.cartao-frente, .cartao-atras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Frente do Cartão */
+.cartao-frente {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    color: white;
+    border: 3px solid #ff1493;
+}
+
+.tag-nome {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Atrás do Cartão */
+.cartao-atras {
+    background-color: #ffffff;
+    color: #880e4f;
+    border: 3px solid #ff69b4;
+    transform: rotateY(180deg);
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Rodapé */
+footer {
+    background-color: #ff69b4;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 40px;
 }

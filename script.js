@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Mensagem especial ao completar todos
                 if (cardsExplorados.size === cartoes.length) {
                     setTimeout(() => {
-                        alert("Parabéns, Aluno! Você já descobriu todas as 15 tags HTML! 🎉🌸");
+                        alert("Parabéns, Aluno! Você já descobriu todas as 15 tags HTML!☾𖤓 ");
                     }, 500);
                 }
             }

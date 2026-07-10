@@ -1,4 +1,5 @@
-** {
+
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,273 +10,27 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fff0f5;
+    background-color: #fff0f5; 
     color: #4a1525;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita barra de rolagem chata no celular */
 }
 
 /* ====================================
-   BALEIA ROSA EM CSS (NANDANDO AO FUNDO)
+   BALEIA ROSA EM CSS (NADANDO AO FUNDO)
    ==================================== */
 .baleia-container {
     position: fixed;
-    bottom: 40px;
+    bottom: 50px;
     left: -200px;
-    z-index: 0;
+    z-index: 0; 
     opacity: 0.85;
     animation: nadar 18s linear infinite;
-    pointer-events: none;
+    pointer-events: none; 
 }
 
 .baleia {
-    width: 140px;
-    height: 75px;
+    width: 150px;
+    height: 80px;
     background: #ff69b4;
-    border-radius: 80px 80px 30px 40px;
-    position: relative;
-    animation: flutuar 3s ease-in-out infinite alternate;
-}
-
-.baleia .olho {
-    width: 9px;
-    height: 9px;
-    background-color: #333;
-    border-radius: 50%;
-    position: absolute;
-    top: 22px;
-    left: 22px;
-}
-
-.baleia .boca {
-    width: 18px;
-    height: 8px;
-    border-bottom: 3px solid #333;
-    border-radius: 50%;
-    position: absolute;
-    top: 32px;
-    left: 14px;
-}
-
-.baleia .cauda {
-    position: absolute;
-    right: -22px;
-    top: 18px;
-    width: 0;
-    height: 0;
-    border-top: 18px solid transparent;
-    border-bottom: 18px solid transparent;
-    border-left: 30px solid #ff1493;
-}
-
-.baleia .jato-agua {
-    position: absolute;
-    top: -22px;
-    left: 65px;
-    width: 8px;
-    height: 22px;
-    background: rgba(255, 105, 180, 0.6);
-    border-radius: 10px;
-    animation: espirrar 1.5s infinite;
-}
-
-@keyframes nadar {
-    0% {
-        left: -200px;
-        transform: scaleX(1);
-    }
-    49% {
-        transform: scaleX(1);
-    }
-    50% {
-        left: calc(100vw + 50px);
-        transform: scaleX(-1);
-    }
-    99% {
-        transform: scaleX(-1);
-    }
-    100% {
-        left: -200px;
-        transform: scaleX(1);
-    }
-}
-
-@keyframes flutuar {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-15px); }
-}
-
-@keyframes espirrar {
-    0%, 100% { height: 8px; opacity: 0; }
-    50% { height: 25px; opacity: 1; }
-}
-
-/* ====================================
-   CABEÇALHO
-   ==================================== */
-.cabecalho {
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(135deg, #ff69b4, #ff1493);
-    color: white;
-    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-    position: relative;
-    z-index: 2;
-}
-
-.cabecalho h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.cabecalho nav a {
-    text-decoration: none;
-    color: #ff1493;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.cabecalho nav a:hover {
-    background-color: #ffe4e1;
-    transform: scale(1.05);
-}
-
-/* ====================================
-   CONTEÚDO PRINCIPAL
-   ==================================== */
-main {
-    flex: 1;
-    padding: 30px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-main h2 {
-    color: #d81b60;
-    margin-bottom: 8px;
-    font-size: 1.4rem;
-}
-
-.contador {
-    font-weight: bold;
-    color: #ff1493;
-    margin-bottom: 25px;
-    font-size: 1.1rem;
-}
-
-.container-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* ====================================
-   ESTRUTURA DOS CARDS & GIRO 3D
-   ==================================== */
-.cartao {
-    width: 260px;
-    height: 200px;
-    perspective: 1000px;
-}
-
-.cartao-interno {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
-}
-
-/* Funciona tanto ao passar o mouse quanto ao clicar/tocar via classe JS */
-.cartao:hover .cartao-interno, 
-.cartao.virado .cartao-interno {
-    transform: rotateY(180deg);
-}
-
-.cartao-frente, .cartao-atras {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.cartao-frente {
-    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
-    color: white;
-    border: 3px solid #ff1493;
-}
-
-.tag-nome {
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.cartao-atras {
-    background-color: #ffffff;
-    color: #880e4f;
-    border: 3px solid #ff69b4;
-    transform: rotateY(180deg);
-    font-size: 1rem;
-    line-height: 1.4;
-    font-weight: 500;
-}
-
-footer {
-    background-color: #ff69b4;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-weight: bold;
-    margin-top: 40px;
-    position: relative;
-    z-index: 2;
-}
-
-/* ====================================
-   REGRAS PARA CELULAR (RESPONSIVIDADE)
-   ==================================== */
-@media (max-width: 600px) {
-    .cabecalho {
-        flex-direction: column;
-        gap: 12px;
-        padding: 15px;
-        text-align: center;
-    }
-
-    .cabecalho h1 {
-        font-size: 1.5rem;
-    }
-
-    .cartao {
-        width: 100%;
-        max-width: 300px;
-        height: 180px;
-    }
-
-    main h2 {
-        font-size: 1.1rem;
-    }
-
-    .baleia {
-        transform: scale(0.75);
-    }
-}
+    border-radius: 80px 80px

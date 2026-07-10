@@ -4,29 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardsExplorados = new Set();
 
     cartoes.forEach((cartao, index) => {
-        // Suporte para CELULAR: Vira ao tocar no card
+        
+        // 1. COMPATIBILIDADE COM CELULAR: Vira e desvira ao clicar/tocar
         cartao.addEventListener("click", () => {
             cartao.classList.toggle("virado");
-            registrarCard(index);
+            contabilizarCard(index);
         });
 
-        // Suporte para PC: Registra ao passar o mouse por cima
+        // 2. COMPATIBILIDADE COM PC: Contabiliza ao passar o mouse
         cartao.addEventListener("mouseenter", () => {
-            registrarCard(index);
+            contabilizarCard(index);
         });
     });
 
-    function registrarCard(index) {
+    // Função única para controlar a pontuação
+    function contabilizarCard(index) {
         if (!cardsExplorados.has(index)) {
             cardsExplorados.add(index);
             contadorElemento.textContent = cardsExplorados.size;
 
-            // Mensagem especial ao abrir os 15 cards
-            if (cardsExplorados.size === cartoes.length) {
-                setTimeout(() => {
-                    alert("Parabéns, Mariany! Você já descobriu todas as 15 tags HTML! 🎉🌸");
-                }, 500);
-            }
-        }
-    }
-});
+            // Alerta fofinho quando terminar tudo
+            if (cardsExpl
